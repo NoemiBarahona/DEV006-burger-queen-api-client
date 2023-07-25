@@ -12,8 +12,7 @@ export default {
       'Yellow': '#E3E6A9',
       'Pink': '#D9B4B0',
       'Blue': '#3F3EB3',
-      'GreenLight': '#7AF0A7'
-
+      'GreenLight': '#7AF0A7',
     },
   },
   plugins: [],
