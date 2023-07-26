@@ -3,7 +3,7 @@ import React from 'react';
 import logoFondo from '../../assets/logoFondo.png'; // Corregimos la ruta de la imagen
 import 'tailwindcss/tailwind.css';
 
-function LogoHome() { // Corregimos el nombre del componente a LogoHome
+function LogoLogin() { // Corregimos el nombre del componente a LogoHome
     return (
         <div className="flex justify-center w-full h-full bg-DarkBlue">
             <img src={logoFondo} alt="logo" className="w-90 h-90 " />
@@ -11,4 +11,5 @@ function LogoHome() { // Corregimos el nombre del componente a LogoHome
     );
 }
 
-export default LogoHome;
+
+export default LogoLogin;

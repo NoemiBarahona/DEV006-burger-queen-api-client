@@ -13,6 +13,8 @@ export default {
       'Pink': '#D9B4B0',
       'Blue': '#3F3EB3',
       'GreenLight': '#7AF0A7',
+      'White': '#ffff',
+      'Black': '#000000'
     },
   },
   plugins: [],
