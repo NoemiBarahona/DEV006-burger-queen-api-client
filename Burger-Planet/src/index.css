@@ -1,9 +1,7 @@
+/* eslint-disable-next-line react/prop-types */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-<<<<<<< HEAD
-=======
-
 body {
     background-color: #170E3B;
 }
@@ -14,4 +12,3 @@ body {
     height: 100%;
 
 }
->>>>>>> b7efb3f9770a6a1d9033610d42022ef9f6489de6
