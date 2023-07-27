@@ -1,10 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
+import { requestLogin } from '../funtions/funtions';
 import 'tailwindcss/tailwind.css';
 
 function InputLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [authData, setAuthData] = useState(null);
+    // const [errormessage, setErrorMessage] = useState('');
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -20,6 +23,18 @@ function InputLogin() {
         console.log('Correo electrónico:', email);
         console.log('Contraseña:', password);
     };
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const data = await requestLogin(email, password)
+            setAuthData(data)
+            console.log("AQUI SE TRAE DATA", data)
+        }
+        catch (error) {
+            console.log("TENEMOS ERROR", error)
+        }
+    }
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 text-White ">
@@ -52,7 +67,7 @@ function InputLogin() {
                     />
                 </div>
             </div>
-            <button type="submit" className="text-3xl justify-center flex mx-auto bg-GreenLight border-4 text-Black rounded-3xl py-2 px-4 shadow-lg w-2/5 h-20 stroke-15 stroke-GreenLight blur-12.5">
+            <button onClick={handleLogin} type="submit" className="text-3xl justify-center flex mx-auto bg-GreenLight border-4 text-Black rounded-3xl py-2 px-4 shadow-lg w-2/5 h-20 stroke-15 stroke-GreenLight blur-12.5">
                 Iniciar Sesión
             </button>
         </form>
