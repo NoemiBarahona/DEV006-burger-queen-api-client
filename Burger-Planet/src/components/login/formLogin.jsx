@@ -7,15 +7,15 @@ import { useNavigate } from 'react-router-dom';
 function InputLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [authData, setAuthData] = useState(null);
-    // const [errormessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        if (name === 'correo') {
+            setEmail(value);
+        } else if (name === 'contrasena') {
+            setPassword(value);
+        }
     };
 
     const navigate = useNavigate();
@@ -29,67 +29,85 @@ function InputLogin() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        if (!email || !password) {
+            setErrorMessage('Verifica que los campos no esten vacíos.');
+            return;
+        }
+
         try {
-            const data = await requestLogin(email, password)
-            setAuthData(data)
-            const tokenUser = data.accessToken;
-            localStorage.setItem("token", tokenUser);
-            const roleUser = data.user.role;
-            localStorage.setItem("role", roleUser);
+            const data = await requestLogin(email, password);
+            const { accessToken, user: { role } } = data;
+            localStorage.setItem('token', accessToken);
+            localStorage.setItem('role', role);
 
-
-            switch (roleUser) {
+            switch (role) {
                 case 'admin':
-                    navigate('/adminView')
+                    navigate('/adminView');
                     break;
                 case 'waiter':
-                    navigate('/waiterview')
+                    navigate('/waiterview');
                     break;
                 case 'chef':
-                    navigate('/chefview')
+                    navigate('/chefview');
                     break;
                 default:
-                    console.log('default case')
+                    console.log('Default case');
                     break;
             }
+        } catch (error) {
+            console.log('Error:', error.message);
+            // Check the error message from the server and handle specific cases
+            if (error.message === 'Credenciales no válidas') {
+                setErrorMessage('Correo electrónico o contraseña no válidos.');
+            } else {
+                setErrorMessage('Ocurrió un error, verifica tus datos.');
+            }
         }
-        catch (error) {
-            console.log("TENEMOS ERROR", error)
-        }
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 text-White ">
-            <div className="flex flex-col items-center text-3xl pt-12">
-                <label htmlFor="correo" className="text-left">Correo electrónico:</label>
+            <div className="flex flex-col items-center text-3xl ">
+                <label htmlFor="correo" className="text-left">
+                    Correo electrónico:
+                </label>
                 <div className="w-4/5 flex justify-center pt-5">
                     <input
                         type="email"
                         id="correo"
                         name="correo"
                         value={email}
-                        onChange={handleEmailChange}
+                        onChange={handleInputChange}
                         required
                         className="items-center bg-DarkBlue border-4 border-GreenLight rounded-3xl py-2 px-4 w-full h-20"
                     />
                 </div>
             </div>
 
-            <div className="flex flex-col items-center text-3xl pt-9">
-                <label htmlFor="contrasena" className="text-left">Contraseña:</label>
-                <div className="w-4/5 flex justify-center pt-5 pb-12">
+            <div className="flex flex-col items-center text-3xl pt-9 text-White">
+                <label htmlFor="contrasena" className="text-left">
+                    Contraseña:
+                </label>
+                <div className="w-4/5 flex justify-center pt-5 pb-8">
                     <input
                         type="password"
                         id="contrasena"
                         name="contrasena"
                         value={password}
-                        onChange={handlePasswordChange}
+                        onChange={handleInputChange}
                         required
-                        className="text-left bg-DarkBlue border-4 border-GreenLight rounded-3xl py-2 px-4 w-full h-20"
+                        className="text-left  bg-DarkGreen border-4 bg-opacity-1 border-GreenLight rounded-3xl py-2 px-4 w-full h-20"
                     />
                 </div>
+                {/* Show the error message in real-time */}
+                {errorMessage && <div className="text-Pink">{errorMessage}</div>}
             </div>
-            <button onClick={handleLogin} type="submit" className="text-3xl justify-center flex mx-auto bg-GreenLight border-4 text-Black rounded-3xl py-2 px-4 shadow-lg w-2/5 h-20 stroke-15 stroke-GreenLight blur-12.5">
+            <button
+                onClick={handleLogin}
+                type="submit"
+                className="text-3xl justify-center flex mx-64 mt-96 bg-GreenLight border-4 text-Black rounded-3xl py-4 px-4 shadow-lg w-2/5 h-20 stroke-15 stroke-GreenLight blur-12.5"
+            >
                 Iniciar Sesión
             </button>
         </form>
