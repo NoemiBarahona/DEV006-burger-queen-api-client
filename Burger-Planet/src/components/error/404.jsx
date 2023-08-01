@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
-import Img404 from 'Burger-Planet/src/components/error/logoConError.jsx'
+// import React from 'react';
+import Img404 from './404.jsx'
 import 'tailwindcss/tailwind.css'
 
-function WaiterView() {
+function ImagenDe404() {
     return (
         <>
             <div className="min-w-full bg-DarkBlue">
@@ -13,4 +13,4 @@ function WaiterView() {
     )
 }
 
-export default WaiterView;
+export default ImagenDe404;

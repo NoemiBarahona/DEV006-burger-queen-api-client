@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { requestLogin } from '../funtions/funtions';
 import 'tailwindcss/tailwind.css';
+import { useNavigate } from 'react-router-dom';
 
 function InputLogin() {
     const [email, setEmail] = useState('');
@@ -17,6 +18,8 @@ function InputLogin() {
         setPassword(event.target.value);
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // Aquí puedes realizar acciones con el correo electrónico y la contraseña ingresados
@@ -29,7 +32,26 @@ function InputLogin() {
         try {
             const data = await requestLogin(email, password)
             setAuthData(data)
-            console.log("AQUI SE TRAE DATA", data)
+            const tokenUser = data.accessToken;
+            localStorage.setItem("token", tokenUser);
+            const roleUser = data.user.role;
+            localStorage.setItem("role", roleUser);
+
+
+            switch (roleUser) {
+                case 'admin':
+                    navigate('/adminView')
+                    break;
+                case 'waiter':
+                    navigate('/waiterview')
+                    break;
+                case 'chef':
+                    navigate('/chefview')
+                    break;
+                default:
+                    console.log('default case')
+                    break;
+            }
         }
         catch (error) {
             console.log("TENEMOS ERROR", error)
