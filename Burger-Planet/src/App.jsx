@@ -8,7 +8,7 @@ import AdminHome from './components/adminview/adminview.jsx';
 //import ChefView from './components/chefview/chefview';
 import LoginProfile from './components/login/login.jsx';
 // import { login } from './components/login/login';
-//import WaiterView from './components/waiterview/waiterview';
+import WaiterView from './components/waiterview/waiterview';
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,8 +23,8 @@ function App() {
 
           <Route path='/' Component={LoginProfile} />
           {/* <Route path='/login' Component={ } />
-          <Route path='/waiterview' Component={WaiterView} />
           <Route path='/chefview' Component={ChefView} />*/}
+          <Route path='/waiterview' Component={WaiterView} />
           <Route path='/adminview' Component={AdminHome} />
 
         </Routes>
