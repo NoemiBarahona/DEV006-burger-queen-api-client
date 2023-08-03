@@ -3,11 +3,19 @@ import React, { useState } from 'react';
 import { requestLogin } from '../funtions/funtions';
 import 'tailwindcss/tailwind.css';
 import { useNavigate } from 'react-router-dom';
+import eyeOpen from '../../assets/eye-green.png';
+import eyeClosed from '../../assets/closed-eyes-Green.png';
 
 function InputLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -91,14 +99,27 @@ function InputLogin() {
                 </label>
                 <div className="w-4/5 flex justify-center pt-5 pb-8">
                     <input
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         id="contrasena"
                         name="contrasena"
                         value={password}
                         onChange={handleInputChange}
                         required
-                        className="text-left  bg-DarkGreen border-4 bg-opacity-1 border-GreenLight rounded-3xl py-2 px-4 w-full h-20"
+                        className="text-left bg-DarkBlue border-4 bg-opacity-1 border-GreenLight rounded-3xl py-2 px-4 w-full h-20 pr-16" // Añadimos "pr-16" para dar espacio al botón dentro del input
                     />
+                    <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className="focus:outline-none absolute right-4 top-1/2 transform -translate-y-1/2 mt-72 mr-24" // Añadimos estilos para posicionar el botón absolutamente dentro del input
+                    >
+                        <img
+                            src={showPassword ? eyeClosed : eyeOpen}
+                            alt={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                            className="w-6 h-6" // Establecemos el tamaño de la imagen, ajusta según tus necesidades
+                        />
+                    </button>
+
+
                 </div>
                 {/* Show the error message in real-time */}
                 {errorMessage && <div className="text-Pink">{errorMessage}</div>}
