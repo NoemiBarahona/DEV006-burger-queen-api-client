@@ -5,6 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+<<<<<<< HEAD
+    extend: {},
+  },
+  plugins: [],
+}
+=======
     colors: {
       'DarkBlue': '#170E3B',
       'GreenNeon': '#37EC4B',
@@ -29,3 +35,4 @@ export default {
 // #3F3EB3 Azul 
 // #7AF0A7 verde agua
 
+>>>>>>> b7efb3f9770a6a1d9033610d42022ef9f6489de6
