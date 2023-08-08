@@ -7,17 +7,17 @@ import eyeOpen from '../../assets/eye-green.png';
 import eyeClosed from '../../assets/closed-eyes-Green.png';
 
 function InputLogin() {
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(''); // almacenar el valor del correo electrónico
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); //controlar la visibilidad de la contraseña
     const [errorMessage, setErrorMessage] = useState('');
 
 
-    const togglePasswordVisibility = () => {
+    const togglePasswordVisibility = () => { // Función para alternar la visibilidad de la contraseña
         setShowPassword(!showPassword);
     };
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event) => { // Función para manejar los cambios en los campos de entrada (correo electrónico y contraseña)
         const { name, value } = event.target;
         if (name === 'correo') {
             setEmail(value);
@@ -26,16 +26,16 @@ function InputLogin() {
         }
     };
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); //navegación de React Router
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event) => { // Función para manejar el envío del formulario (se ejecuta al hacer clic en "Iniciar Sesión")
         event.preventDefault();
         // Aquí puedes realizar acciones con el correo electrónico y la contraseña ingresados
         console.log('Correo electrónico:', email);
         console.log('Contraseña:', password);
     };
 
-    const handleLogin = async (e) => {
+    const handleLogin = async (e) => { // Función para manejar el inicio de sesión
         e.preventDefault();
 
         if (!email || !password) {
@@ -44,10 +44,10 @@ function InputLogin() {
         }
 
         try {
-            const data = await requestLogin(email, password);
-            const { accessToken, user: { role } } = data;
-            localStorage.setItem('token', accessToken);
-            localStorage.setItem('role', role);
+            const data = await requestLogin(email, password);  // Llamada a la función de inicio de sesión con el correo electrónico y contraseña proporcionados
+            const { accessToken, user: { role } } = data; 
+            localStorage.setItem('token', accessToken); // Almacenamiento del token de acceso en el almacenamiento local del navegador
+            localStorage.setItem('role', role); // Almacenamiento del rol del usuario en el almacenamiento local
 
             switch (role) {
                 case 'admin':
@@ -65,7 +65,7 @@ function InputLogin() {
             }
         } catch (error) {
             console.log('Error:', error.message);
-            // Check the error message from the server and handle specific cases
+            // Comprobación del mensaje de error del servidor y manejo de casos específicos
             if (error.message === 'Credenciales no válidas') {
                 setErrorMessage('Correo electrónico o contraseña no válidos.');
             } else {

@@ -13,15 +13,17 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-} from 'react-router-dom';
+} from 'react-router-dom'; // Modulo BrowserRouter, Routes y Route desde 'react-router-dom'
 
 function App() {
   return (
-    <Router>
+    // Usar el componente Router para envolver las rutas
+    <Router>  
       <>
         <Routes>
 
-          <Route path='/' Component={LoginProfile} />
+          <Route path='/' Component={LoginProfile} /> {/* se muestra cuando se accede a la página principal '/' */}
+          
           {/* <Route path='/login' Component={ } />
           <Route path='/chefview' Component={ChefView} />*/}
           <Route path='/waiterview' Component={WaiterView} />
