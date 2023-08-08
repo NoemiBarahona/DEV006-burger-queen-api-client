@@ -7,7 +7,7 @@ import Logocara from '../logopequeño';
 function WaiterView() {
     return (
         <>
-            <div className="min-w-full bg-White">
+            <div className="min-w-full bg-DarkBlue">
                 <Logocara />
                 <OrderTables />
             </div>
