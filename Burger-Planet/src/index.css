@@ -1,7 +1,7 @@
-/* eslint-disable-next-line react/prop-types */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 body {
     background-color: #170E3B;

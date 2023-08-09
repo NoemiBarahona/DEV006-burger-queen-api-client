@@ -10,6 +10,7 @@ function WaiterView() {
     const location = useLocation();
     const { role, email } = location.state || {};
     const username = email ? email.split('@')[0] : '';
+    // const history = useHistory();
 
     const initialTables = [
         { label: 'Mesa 1', selected: false },
