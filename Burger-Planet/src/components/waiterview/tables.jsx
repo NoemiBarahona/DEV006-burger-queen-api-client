@@ -1,17 +1,17 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import 'tailwindcss/tailwind.css';
 import table from '../../assets/table.png';
-// import { useLocation } from 'react-router-dom';
 
 function OrderTables(props) {
-    // eslint-disable-next-line react/prop-types
     const { label, selected } = props;
-    // const history = useHistory();
+    const navigate = useNavigate(); // Obtén la función navigate
 
     const handleTableClick = () => {
         if (selected) {
-            // history.push(`/table/${label}`); // Redireccionar a la vista de mesa con el nombre de la mesa en la URL
+            navigate(`/table/${label}`); // Usa navigate en lugar de history.push
         }
     };
 
