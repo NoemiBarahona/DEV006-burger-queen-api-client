@@ -45,16 +45,16 @@ function InputLogin() {
 
         try {
             const data = await requestLogin(email, password);  // Llamada a la función de inicio de sesión con el correo electrónico y contraseña proporcionados
-            const { accessToken, user: { role } } = data; 
+            const { accessToken, user: { role } } = data;
             localStorage.setItem('token', accessToken); // Almacenamiento del token de acceso en el almacenamiento local del navegador
             localStorage.setItem('role', role); // Almacenamiento del rol del usuario en el almacenamiento local
 
             switch (role) {
                 case 'admin':
-                    navigate('/adminView', { state: { role, email } });
+                    navigate('/adminView');
                     break;
                 case 'waiter':
-                    navigate('/waiterview', { state: { role, email } });
+                    navigate('/waiterview');
                     break;
                 case 'chef':
                     navigate('/chefview');

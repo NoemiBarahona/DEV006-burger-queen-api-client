@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import OrderTables from './tables.jsx';
 import Logocara from '../logopequeño';
 import WelcomeUser from '../adminview/welcome.jsx';
@@ -10,7 +10,7 @@ function WaiterView() {
     const location = useLocation();
     const { role, email } = location.state || {};
     const username = email ? email.split('@')[0] : '';
-    const history = useHistory();
+    // const history = useHistory();
 
     const initialTables = [
         { label: 'Mesa 1', selected: false },
