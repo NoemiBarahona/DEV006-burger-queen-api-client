@@ -9,6 +9,7 @@ import AdminHome from './components/adminview/adminview.jsx';
 import LoginProfile from './components/login/login.jsx';
 // import { login } from './components/login/login';
 import WaiterView from './components/waiterview/waiterview';
+import Menu from './components/menuview/menu';
 import {
   BrowserRouter as Router,
   Routes,
@@ -27,6 +28,7 @@ function App() {
           {/* <Route path='/login' Component={ } />
           <Route path='/chefview' Component={ChefView} />*/}
           <Route path='/waiterview' Component={WaiterView} />
+          <Route path='/menu' Component={Menu} />
           <Route path='/adminview' Component={AdminHome} />
 
         </Routes>
