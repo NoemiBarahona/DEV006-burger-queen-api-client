@@ -18,12 +18,12 @@ import {
 function App() {
   return (
     // Usar el componente Router para envolver las rutas
-    <Router>  
+    <Router>
       <>
         <Routes>
 
           <Route path='/' Component={LoginProfile} /> {/* se muestra cuando se accede a la página principal '/' */}
-          
+
           {/* <Route path='/login' Component={ } />
           <Route path='/chefview' Component={ChefView} />*/}
           <Route path='/waiterview' Component={WaiterView} />

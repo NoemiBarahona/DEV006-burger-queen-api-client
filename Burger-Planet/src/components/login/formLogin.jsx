@@ -51,10 +51,10 @@ function InputLogin() {
 
             switch (role) {
                 case 'admin':
-                    navigate('/adminView');
+                    navigate('/adminView', { state: { role, email } });
                     break;
                 case 'waiter':
-                    navigate('/waiterview');
+                    navigate('/waiterview',{ state: { role, email } });
                     break;
                 case 'chef':
                     navigate('/chefview');
